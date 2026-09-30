@@ -33,14 +33,18 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MainNavigation(
-            username: username,
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (!mounted) return;
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainNavigation(
+              username: username,
+            ),
           ),
-        ),
-      );
+        );
+      });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -89,7 +93,6 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.pink,
               ),
               const SizedBox(height: 20),
-
               const Text(
                 'Pokemon App',
                 style: TextStyle(
@@ -97,15 +100,11 @@ class _LoginPageState extends State<LoginPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               const SizedBox(height: 30),
-
               _usernameField(),
               const SizedBox(height: 16),
-
               _passwordField(),
               const SizedBox(height: 24),
-
               ElevatedButton(
                 onPressed: _login,
                 child: const Text('Login'),
