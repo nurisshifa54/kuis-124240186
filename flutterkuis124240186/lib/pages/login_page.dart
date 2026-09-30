@@ -26,6 +26,13 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     if (username.isNotEmpty && password == _validPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.green,
+          content: Text('Login berhasil'),
+        ),
+      );
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -37,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
+          backgroundColor: Colors.red,
           content: Text('Username atau password salah'),
         ),
       );
